@@ -18,6 +18,7 @@
         <h1 class="heading">Hello there</h1>
         <h2 class="sub-heading">How can I help you?</h2>
       </header>
+
       <!-- Suggestion  List -->
       <ul class="suggestons">
         <li class="suggestions-item">
@@ -45,6 +46,38 @@
           <span class="material-symbols-rounded"> code_blocks </span>
         </li>
       </ul>
+
+      <!-- Prompt Container -->
+      <div class="prompt-container">
+        <div class="prompt-wrapper">
+          <form action="#" class="prompt-form">
+            <input
+              type="text"
+              placeholder="ask chatbot"
+              class="prompt-input"
+              required
+            />
+            <div class="prompt-actions"></div>
+            <button
+              id="add-file-btn"
+              type="button"
+              class="material-symbols-rounded"
+            >
+              attach_file
+            </button>
+            <button id="send-prompt-btn" class="material-symbols-rounded">
+              arrow_upward
+            </button>
+          </form>
+          <button id="theme-toggle-btn" class="material-symbols-rounded">
+            light_mode
+          </button>
+          <button id="delete-chats-btn" class="material-symbols-rounded">
+            delete
+          </button>
+        </div>
+        <p class="disclaimer-text">Chatbot can make mistakes, so double-check it. </p>
+      </div>
     </div>
   </body>
 </html>
