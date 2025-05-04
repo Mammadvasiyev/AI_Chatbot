@@ -1,5 +1,5 @@
 /* Imorting  Google Fonts - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
 * {
   margin: 0;
@@ -19,7 +19,38 @@
   --ccroolbar-color: #626a7f;
 }
 
-body{
-    color: var(--text-color);
-    background: var(--primary-color);
+body {
+  color: var(--text-color);
+  background: var(--primary-color);
+}
+
+.container {
+  padding: 32px 0 60px;
+}
+
+.container :where(.app-header, .suggestons, .prompt-wrapper, .disclaimer-text) {
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 20px;
+  max-width: 980px;
+}
+
+/* App header stylings */
+.container .app-header {
+  margin-top: 4vh;
+}
+
+.app-header .heading {
+  font-size: 3rem;
+  width: fit-content;
+  background: linear-gradient(to right, #1d7efd, #8f6fff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-header .sub-heading{
+    font-size: 2.6rem;
+    margin-top: -5px;
+    color: var(--subheading-color);
 }
