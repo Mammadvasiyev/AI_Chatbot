@@ -105,9 +105,27 @@ body {
 }
 
 .suggestions .suggestions-item:nth-child(3) span {
-  color:orange;
+  color: orange;
 }
 
 .suggestions .suggestions-item:nth-child(4) span {
-  color:blueviolet;
+  color: blueviolet;
+}
+
+/* Prompt container stylings */
+.prompt-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 0;
+  background: var(--primary-color);
+}
+
+.prompt-container :where(.prompt-wrapper, .prompt-form, .prompt-actions) {
+  display: flex;
+  gap: 12px;
+  height: 56px;
+  align-items: center;
+
 }
