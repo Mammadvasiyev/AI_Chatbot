@@ -2,6 +2,10 @@ const chatsContainer = document.querySelector(".chats-container");
 const promptForm = document.querySelector(".prompt-form");
 const promptInput = promptForm.querySelector(".prompt-input");
 
+// API Setup
+const API_KEY = "AIzaSyDHZh627RGVI3oumY25NwLtLMsRjzXeKqk";
+const API_URL = `"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}"`;
+
 let userMessage = "";
 
 // Function to create message elements
@@ -11,6 +15,14 @@ const createMsgElement = (content, ...classes) => {
   div.innerHTML = content;
   return div;
 };
+
+const generateResponse = async ()=> {
+  try{
+    const response = await fetch();
+
+  } catch(error);
+  
+}
 
 // Handle the form submission
 const handleFormSubmit = (e) => {
