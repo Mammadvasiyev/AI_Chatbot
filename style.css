@@ -167,3 +167,34 @@ body {
 .prompt-wrapper button:hover {
   background: var(--secondary-hover-color);
 }
+
+.prompt-form .prompt-actions {
+  gap: 5px;
+  margin-right: 7px;
+}
+
+.prompt-form .prompt-actions button {
+  height: 45px;
+  width: 45px;
+}
+
+.prompt-form #send-prompt-btn {
+  display: none;
+  color: #fff;
+  background: #1d7efd;
+}
+
+.prompt-form .prompt-input:valid ~ .prompt-actions #send-prompt-btn {
+  display: block;
+}
+
+.prompt-form #send-prompt-btn:hover {
+  background: #0264e3;
+}
+
+.prompt-container .disclaimer-text {
+  text-align: center;
+  font-size: 0.9rem;
+  padding: 16px 20px 0;
+  color: var(--placeholder-color);
+}
