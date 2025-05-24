@@ -123,6 +123,11 @@ body {
 }
 
 /* Chats container stylings */
+.container .chats-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .chats-container .message {
   display: flex;
   gap: 11px;
