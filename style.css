@@ -238,7 +238,11 @@ body {
   margin-right: 7px;
 }
 
-
+.prompt-form :where(.file-upload-wrapper, button, img) {
+  position: relative;
+  height: 45px;
+  width: 45px;
+}
 
 .prompt-form #send-prompt-btn {
   display: none;
@@ -252,6 +256,12 @@ body {
 
 .prompt-form #send-prompt-btn:hover {
   background: #0264e3;
+}
+
+.prompt-form .file-upload-wrapper :where(button,img){
+  position: absolute;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .prompt-container .disclaimer-text {
