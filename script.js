@@ -17,21 +17,27 @@ const createMsgElement = (content, ...classes) => {
   return div;
 };
 
+// Make the API call and generate the bot's response
 const generateResponse = async ()=> {
   // Add user message to the chat history
   chatHistory.push({
     role:"user",
     parts:[{text:userMessage}]
-  })
+  });
+
   try{
+    // Send the chat history to the API to get a response
     const response = await fetch(API_URL,{
       method:"POST", 
       headers:{"Content-Type: application/json}"},
-      body:JSON.stringify()
+      body:JSON.stringify({contents:chatHistory})
     });
 
+    const data = await response.json();
+    if(!response.ok) throw new Error(data.error.message);
+    console.log(data);
   } catch(error);
-  
+  console.log(error);
 }
 
 // Handle the form submission
