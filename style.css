@@ -26,6 +26,9 @@ body {
 
 .container {
   padding: 32px 0 60px;
+  overflow-y: var(--primary-color);
+  max-height: calc(100vh - 127px);
+  scrollbar-color: var(--scroolbar-color);
 }
 
 .container
@@ -123,7 +126,7 @@ body {
 }
 
 /* Chats container stylings */
-.container .chats-container{
+.container .chats-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -144,15 +147,14 @@ body {
   border-radius: 50%;
   background: var(--secondary-color);
   border: 1px solid var(--secondary-hover-color);
-
 }
 
-.chats-container .bot-message.loading .avatar{
+.chats-container .bot-message.loading .avatar {
   animation: rotate 3s linear infinite;
 }
 
-@keyframes rotate{
-  100%{
+@keyframes rotate {
+  100% {
     transform: rotate(360deg);
   }
 }
