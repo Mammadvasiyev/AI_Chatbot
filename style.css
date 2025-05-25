@@ -238,10 +238,7 @@ body {
   margin-right: 7px;
 }
 
-.prompt-form .prompt-actions button {
-  height: 45px;
-  width: 45px;
-}
+
 
 .prompt-form #send-prompt-btn {
   display: none;
