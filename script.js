@@ -18,13 +18,22 @@ const createMsgElement = (content, ...classes) => {
 };
 
 // Simulate typing effect for bot responses
-const typingEffect = (text, textElement, botMsgDiv) =>{
+const typingEffect = (text, textElement, botMsgDiv) => {
   textElement.textContent = "";
-  const words = text.split(" ");
+  const words = text.split("  ");
   let wordIndex = 0;
-}
 
-// Set an interval to type each word
+  // Set an interval to type each word
+  const typingInterval = setInterval(() => {
+    if (wordIndex < words.length) {
+      textElement.textContent +=
+        (wordIndex === 0 ? "" : "") + words[wordIndex++];
+      botMsgDiv.classList.remove("loading");
+    } else {
+      clearInterval(typingInterval);
+    }
+  }, 40);
+};
 
 // Make the API call and generate the bot's response
 const generateResponse = async (botMsgDiv) => {
