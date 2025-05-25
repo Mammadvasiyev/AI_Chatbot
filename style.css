@@ -26,9 +26,9 @@ body {
 
 .container {
   padding: 32px 0 60px;
-  overflow-y: var(--primary-color);
+  overflow-y: auto;
   max-height: calc(100vh - 127px);
-  scrollbar-color: var(--scroolbar-color);
+  scrollbar-color: var(--scroolbar-color) transparent;
 }
 
 .container

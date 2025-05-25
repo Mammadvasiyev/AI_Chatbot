@@ -1,3 +1,4 @@
+const container = document.querySelector(".container");
 const chatsContainer = document.querySelector(".chats-container");
 const promptForm = document.querySelector(".prompt-form");
 const promptInput = promptForm.querySelector(".prompt-input");
@@ -17,6 +18,10 @@ const createMsgElement = (content, ...classes) => {
   return div;
 };
 
+// Scrool to the bottom of the container
+const scrollToBottom = () =>
+  container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+
 // Simulate typing effect for bot responses
 const typingEffect = (text, textElement, botMsgDiv) => {
   textElement.textContent = "";
@@ -29,6 +34,7 @@ const typingEffect = (text, textElement, botMsgDiv) => {
       textElement.textContent +=
         (wordIndex === 0 ? "" : "") + words[wordIndex++];
       botMsgDiv.classList.remove("loading");
+      scrollToBottom();
     } else {
       clearInterval(typingInterval);
     }
@@ -80,12 +86,14 @@ const handleFormSubmit = (e) => {
 
   userMsgDiv.querySelector(".message-text").textContent = userMessage;
   chatsContainer.appendChild(userMsgDiv);
+  scrollToBottom();
 
   setTimeout(() => {
     // Generate user message HTML and in the chats container 600ms
     const botMsgHTML = `<img src="gemini-chatbot-logo.svg" class="avatar"/><p class="message-text">Just a sec...</p>`;
     const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
     chatsContainer.appendChild(botMsgDiv);
+    scrollToBottom();
     generateResponse(botMsgDiv);
   }, 600);
 };
