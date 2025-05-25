@@ -17,9 +17,12 @@ const createMsgElement = (content, ...classes) => {
   return div;
 };
 
+// Simulate typing effect for bot responses
+
+
 // Make the API call and generate the bot's response
-const generateResponse = async (botMsgHTML) => {
-  const textElement = botMsgHTML.querySelector(".message-text");
+const generateResponse = async (botMsgDiv) => {
+  const textElement = botMsgDiv.querySelector(".message-text");
   // Add user message to the chat history
   chatHistory.push({
     role: "user",
@@ -42,7 +45,7 @@ const generateResponse = async (botMsgHTML) => {
     const responseText = data.candidates[0].content.parts[0].text
       .replace(/\*\*([^*]+)\*\*/g, "$1")
       .trim();
-    textElement.textContent = responseText;
+    typingEffect(responseText, textElement, botMsgDiv);
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +71,7 @@ const handleFormSubmit = (e) => {
     const botMsgHTML = `<img src="gemini-chatbot-logo.svg" class="avatar"/><p class="message-text">Just a sec...</p>`;
     const botMsgDiv = createMsgElement(botMsgHTML, "bot-message", "loading");
     chatsContainer.appendChild(botMsgDiv);
-    generateResponse(botMsgHTML);
+    generateResponse(botMsgDiv);
   }, 600);
 };
 
