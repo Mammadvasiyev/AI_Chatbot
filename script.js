@@ -9,8 +9,8 @@ const fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper");
 const API_KEY = "AIzaSyAcpO4848jO-_utqbvudfg-ilKskBvsH3A";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
-let userMessage = "";
 const chatHistory = [];
+let userData = { message: "", file: {} };
 
 // Function to create message elements
 const createMsgElement = (content, ...classes) => {
@@ -77,10 +77,11 @@ const generateResponse = async (botMsgDiv) => {
 // Handle the form submission
 const handleFormSubmit = (e) => {
   e.preventDefault();
-  userMessage = promptInput.value.trim();
+  const userMessage = promptInput.value.trim();
   if (!userMessage) return;
 
   promptInput.value = "";
+  userData.message = userMessage;
 
   // Generate user message HTML and add in the chats container
   const userMsgHTML = `<p class="message-text"></p>`;
@@ -113,11 +114,20 @@ fileInput.addEventListener("change", () => {
 
   reader.onload = (e) => {
     fileInput.value = "";
+    const base62String = e.target.result.trim(",")[1];
     fileUploadWrapper.querySelector(".file-preview").src = e.target.result;
     fileUploadWrapper.classList.add(
       "active",
       isImage ? "img-attached" : "file-attached"
     );
+
+    // Store file data in userData obj
+    userData.file = {
+      fileName: file.name,
+      data: base62String,
+      mime_type: file.type,
+      isImage,
+    };
   };
 });
 
