@@ -9,6 +9,7 @@ const fileUploadWrapper = promptForm.querySelector(".file-upload-wrapper");
 const API_KEY = "AIzaSyAcpO4848jO-_utqbvudfg-ilKskBvsH3A";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
 
+let typingInterval, controller;
 const chatHistory = [];
 let userData = { message: "", file: {} };
 
@@ -30,14 +31,16 @@ const typingEffect = (text, textElement, botMsgDiv) => {
   const words = text.split("  ");
   let wordIndex = 0;
   // Set an interval to type each word
-  const typingInterval = setInterval(() => {
+  typingInterval = setInterval(() => {
     if (wordIndex < words.length) {
       textElement.textContent +=
         (wordIndex === 0 ? "" : "") + words[wordIndex++];
-      botMsgDiv.classList.remove("loading");
+
       scrollToBottom();
     } else {
       clearInterval(typingInterval);
+      botMsgDiv.classList.remove("loading");
+      document.body.classList.remove("bot-responding");
     }
   }, 40);
 };
@@ -45,6 +48,7 @@ const typingEffect = (text, textElement, botMsgDiv) => {
 // Make the API call and generate the bot's response
 const generateResponse = async (botMsgDiv) => {
   const textElement = botMsgDiv.querySelector(".message-text");
+  controller = new AbortController();
   // Add user message to the chat history
   chatHistory.push({
     role: "user",
@@ -68,6 +72,7 @@ const generateResponse = async (botMsgDiv) => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ contents: chatHistory }),
+      signal: controller.signal,
     });
 
     const data = await response.json();
@@ -98,6 +103,7 @@ const handleFormSubmit = (e) => {
 
   promptInput.value = "";
   userData.message = userMessage;
+  document.body.classList.add("bot-responding");
   fileUploadWrapper.classList.remove("active", "img-attached", "file-atached");
 
   // Generate user message HTML with optional file attachment
@@ -162,6 +168,15 @@ fileInput.addEventListener("change", () => {
 document.querySelector("#cancel-file-btn").addEventListener("click", () => {
   userData.file = {};
   fileUploadWrapper.classList.remove("active", "img-attached", "file-attached");
+});
+
+// Stop ongoing bot response
+document.querySelector("#stop-response-btn").addEventListener("click", () => {
+  userData.file = {};
+  controller?.abort();
+  clearInterval(typingInterval);
+  chatsContainer.querySelector(".bot-message.loading").classList.remove("loading");
+  document.body.classList.remove("bot-responding");
 });
 
 promptForm.addEventListener("submit", handleFormSubmit);
