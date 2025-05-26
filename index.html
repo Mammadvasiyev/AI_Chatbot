@@ -74,16 +74,23 @@
             />
             <div class="prompt-actions">
               <!-- File upload wrapper -->
-              <div class="file-upload-wrapper">
+              <div class="file-upload-wrapper ">
+                <input type="file" accept="image/*, .pdf, . txt, .csv" id="file-input">
                 <img src="gemini-chatbot-logo.svg" class="file-preview">
                 <button
+                  type="button"
+                  class="file-icon material-symbols-rounded"
+                >
+                  description
+                <button
+                <button 
                   id="add-file-btn"
                   type="button"
                   class="material-symbols-rounded"
                 >
                   attach_file
                 <button
-                  id="add-file-btn"
+                  id="cancel-file-btn"
                   type="button"
                   class="material-symbols-rounded"
                 >

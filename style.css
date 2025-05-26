@@ -229,7 +229,7 @@ body {
   transition: 0.3s ease;
 }
 
-.prompt-wrapper button:hover {
+.prompt-wrapper :is(button:hover. file-icon, #cancel-file-btn) {
   background: var(--secondary-hover-color);
 }
 
@@ -258,10 +258,28 @@ body {
   background: #0264e3;
 }
 
-.prompt-form .file-upload-wrapper :where(button,img){
+.prompt-form .file-upload-wrapper :where(button, img) {
   position: absolute;
   border-radius: 50%;
   object-fit: cover;
+  display: none;
+}
+.prompt-form .file-upload-wrapper #add-file-btn,
+.prompt-form .file-upload-wrapper.active.img-attached img,
+.prompt-form .file-upload-wrapper.active.file-attached .file-icon,
+.prompt-form .file-upload-wrapper.active:hover #cancel-file-btn {
+  display: block;
+}
+
+.prompt-form .file-upload-wrapper.active #add-file-btn {
+  display: none;
+}
+
+.prompt-form #cancel-file-btn {
+  color: red;
+}
+.prompt-form .file-icon {
+  color: #1d7efd;
 }
 
 .prompt-container .disclaimer-text {
