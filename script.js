@@ -86,10 +86,14 @@ const generateResponse = async (botMsgDiv) => {
     typingEffect(responseText, textElement, botMsgDiv);
 
     chatHistory.push({ role: "model", parts: [{ text: responseText }] });
-
-    console.log(chatHistory);
   } catch (error) {
-    console.log(error);
+    textElement.style.color = "#d62939";
+    textElement.textContent =
+      error.name === "AbortError"
+        ? "Response generation stopped."
+        : error.message;
+    botMsgDiv.classList.remove("loading");
+    document.body.classList.remove("bot-responding");
   } finally {
     userData.file = {};
   }
@@ -99,7 +103,8 @@ const generateResponse = async (botMsgDiv) => {
 const handleFormSubmit = (e) => {
   e.preventDefault();
   const userMessage = promptInput.value.trim();
-  if (!userMessage || document.body.classList.contains("bot-responding")) return;
+  if (!userMessage || document.body.classList.contains("bot-responding"))
+    return;
 
   promptInput.value = "";
   userData.message = userMessage;
