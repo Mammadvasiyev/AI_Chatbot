@@ -345,7 +345,7 @@ body.bot-responding .prompt-form #stop-response-btn {
     opacity: 0;
   }
 
-  .prompt-wrapper .hide-controls :where(#theme-toggle-btn, #delete-chats-btn) {
+  .prompt-wrapper.hide-controls :where(#theme-toggle-btn, #delete-chats-btn) {
     display: none;
   }
 }
