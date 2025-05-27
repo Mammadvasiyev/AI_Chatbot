@@ -87,7 +87,7 @@ body {
 }
 
 .container :is(.app-header, .suggestions) {
-  display: none;
+  /* display: none; */
 }
 
 .suggestions .suggestions-item {
