@@ -206,10 +206,10 @@ document.querySelectorAll(".suggestions-item").forEach((item) => {
 document.addEventListener("click", ({ target }) => {
   const wrapper = document.querySelector(".prompt-wrapper");
   const shouldHide =
-    target.clearList.contains("prpmpt-input") ||
+    target.classList.contains("prompt-input") ||
     (wrapper.classList.contains("hide-controls") &&
       (target.id === "add-file-btn" || target.id === "stop-response-btn"));
-  wrapper.classList.toggle("hide-controls", shouldHidehouldHide);
+  wrapper.classList.toggle("hide-controls", shouldHide);
 });
 
 // Toggle dark/light theme

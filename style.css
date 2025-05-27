@@ -329,3 +329,10 @@ body.bot-responding .prompt-form #stop-response-btn {
   padding: 16px 20px 0;
   color: var(--placeholder-color);
 }
+
+/* Responsive media query code for small screens */
+@media (max-width: 768px) {
+  .prompt-wrapper .hide-controls :where(#theme-toggle-btn, #delete-chats-btn) {
+    display: none;
+  }
+}
