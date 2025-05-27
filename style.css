@@ -332,6 +332,19 @@ body.bot-responding .prompt-form #stop-response-btn {
 
 /* Responsive media query code for small screens */
 @media (max-width: 768px) {
+  .container {
+    padding: 20px 0 20px;
+  }
+
+  .app-header :is(.heading, .sub-heading) {
+    font-size: 2rem;
+    line-height: 1.4;
+  }
+
+  .prompt-form .file-upload-wrapper.active #cancel-file-btn {
+    opacity: 0;
+  }
+
   .prompt-wrapper .hide-controls :where(#theme-toggle-btn, #delete-chats-btn) {
     display: none;
   }
