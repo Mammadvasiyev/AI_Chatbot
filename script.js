@@ -99,7 +99,7 @@ const generateResponse = async (botMsgDiv) => {
 const handleFormSubmit = (e) => {
   e.preventDefault();
   const userMessage = promptInput.value.trim();
-  if (!userMessage) return;
+  if (!userMessage || document.body.classList.contains("bot-responding")) return;
 
   promptInput.value = "";
   userData.message = userMessage;
@@ -175,7 +175,16 @@ document.querySelector("#stop-response-btn").addEventListener("click", () => {
   userData.file = {};
   controller?.abort();
   clearInterval(typingInterval);
-  chatsContainer.querySelector(".bot-message.loading").classList.remove("loading");
+  chatsContainer
+    .querySelector(".bot-message.loading")
+    .classList.remove("loading");
+  document.body.classList.remove("bot-responding");
+});
+
+// Delete all chats
+document.querySelector("#delete-chats-btn").addEventListener("click", () => {
+  chatHistory.length = 0;
+  chatsContainer.innerHTML = "";
   document.body.classList.remove("bot-responding");
 });
 
