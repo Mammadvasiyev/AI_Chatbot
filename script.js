@@ -194,9 +194,16 @@ document.querySelector("#delete-chats-btn").addEventListener("click", () => {
   document.body.classList.remove("bot-responding");
 });
 
+// Toggle dark/light theme
 themeToggle.addEventListener("click", () => {
-  document.body.classList.toggle("light-theme");
+  const isLightTheme = document.body.classList.toggle("light-theme");
+  localStorage.setItem("themeColor", isLightTheme ? "light_mode" : "dark_mode");
+  themeToggle.textContent = isLightTheme ? "dark_mode" : "light_mode";
 });
+
+const isLightTheme = localStorage.getItem("themeColor") === "light_mode";
+document.body.classList.toggle("light-theme", isLightTheme);
+themeToggle.textContent = isLightTheme ? "dark_mode" : "light_mode";
 
 promptForm.addEventListener("submit", handleFormSubmit);
 promptForm
